@@ -72,6 +72,7 @@ help: ##@Util Show this help.
 
 install: ##@Project First Time Install Project
 	@make environment-create environment-install ${INTERACTION_TARGET}
+	@make app-create ${INTERACTION_TARGET}
 
 
 uninstall:  ##@Project Clear file system and Remove Project
@@ -139,6 +140,11 @@ endif
 
 environment-clear: ##@Environment Remove Project Environment Configs
 	@rm -f .env
+
+
+app-create: ##@Application Install Dependent Vendors for Project Application
+	@docker-compose exec -T cli composer install ${COMPOSER_DEV_KEY} --no-interaction --prefer-dist --optimize-autoloader
+	@docker-compose exec -T cli artisan key:generate
 
 
 app-clear: ##@Application Remove CSV Ignored Files of Project

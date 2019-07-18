@@ -1,6 +1,14 @@
 # Influence4you Project
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-This project based on [Laravel Project](https://github.com/drupal-composer/drupal-project) 
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
+
+This project based on [Laravel Project](https://github.com/laravel/laravel) 
 dependencies with [Composer](https://getcomposer.org/).
 
 ## Installation
@@ -31,5 +39,15 @@ You may find more useful commands by type
 
 inside the root directory of the project.
 
-If you don't have `make` utill you may install it `apt-get install -y make`
-or just copy `.env.example` file to `.env` and fill all required values.
+## Manual Installation
+If you don't have `make` utill you may install it `apt-get install -y make` and execute command `make install` then.
+Or if you using Windows platform
+just copy `.env.example` file to `.env` and fill all required values and then
+execute this commands:
+``` bash
+docker-compose up -d --build
+
+docker-compose exec -T cli composer install --no-interaction --prefer-dist --optimize-autoloader
+
+docker-compose exec -T cli artisan key:generate
+```
