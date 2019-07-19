@@ -145,6 +145,8 @@ environment-clear: ##@Environment Remove Project Environment Configs
 app-create: ##@Application Install Dependent Vendors for Project Application
 	@docker-compose exec -T cli composer install ${COMPOSER_DEV_KEY} --no-interaction --prefer-dist --optimize-autoloader
 	@docker-compose exec -T cli artisan key:generate
+	@docker-compose down
+	@docker-compose up -d
 
 
 app-clear: ##@Application Remove CSV Ignored Files of Project
