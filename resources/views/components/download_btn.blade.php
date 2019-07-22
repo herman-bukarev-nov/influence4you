@@ -1,0 +1,1 @@
+<a href="{{ $action['path'] }}" class="btn btn-primary float-right" role="button" aria-pressed="true">{{ $action['title'] }}</a>
