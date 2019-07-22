@@ -33,7 +33,16 @@ RUN apt-get update \
         php-ssh2 \
         postgresql-server-dev-all \
         postgresql-client \
+        libxrender1 \
+        libssl-dev \
+        wget \
+        fontconfig \
+        xfonts-base \
+        xfonts-75dpi \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+RUN cd /tmp && wget "https://downloads.wkhtmltopdf.org/0.12/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb" \
+    && apt-get -f install -y  ./wkhtmltox_0.12.5-1.bionic_amd64.deb && rm ./wkhtmltox_0.12.5-1.bionic_amd64.deb
 
 RUN usermod -u $APP_UID www-data \
     && groupmod -o -g $APP_GID www-data
