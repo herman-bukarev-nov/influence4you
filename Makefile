@@ -72,7 +72,7 @@ help: ##@Util Show this help.
 
 install: ##@Project First Time Install Project
 	@make environment-create environment-install ${INTERACTION_TARGET}
-	@make app-create ${INTERACTION_TARGET}
+	@make app-create app-install ${INTERACTION_TARGET}
 
 
 uninstall:  ##@Project Clear file system and Remove Project
@@ -147,6 +147,10 @@ app-create: ##@Application Install Dependent Vendors for Project Application
 	@docker-compose exec -T cli artisan key:generate
 	@docker-compose down
 	@docker-compose up -d
+
+
+app-install: ##@Application Setup Application
+	@docker-compose exec -T cli artisan migrate:fresh --seed
 
 
 app-clear: ##@Application Remove CSV Ignored Files of Project
