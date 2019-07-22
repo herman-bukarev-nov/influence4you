@@ -1,0 +1,1 @@
+<div id="copyright text-right">&copy; Copyright 2019 Herman Bukarev</div>
