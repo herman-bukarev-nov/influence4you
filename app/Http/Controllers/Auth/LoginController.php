@@ -3,37 +3,46 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\View\Factory as View;
+use Illuminate\Routing\UrlGenerator as Url;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
 
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
+     * @var \Illuminate\Routing\UrlGenerator
      */
-    protected $redirectTo = '/home';
+    private $url;
 
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param \Illuminate\Routing\UrlGenerator $url
      */
-    public function __construct()
+    public function __construct(Url $url)
     {
         $this->middleware('guest')->except('logout');
+        $this->url = $url;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function showLoginForm(View $view)
+    {
+        return $view->make('pages.login');
+    }
+
+    /**
+     * Define redirection routes for auth methods.
+     *
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        return $this->url->route('influencers.list', [], false);
     }
 }

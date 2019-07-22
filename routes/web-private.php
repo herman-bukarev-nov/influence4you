@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Private Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/influencers', 'InfluencerController@index')->name('influencers.list');
+Route::get('/influencers/download', 'InfluencerController@downloadIndex')->name('influencers.download.list');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
