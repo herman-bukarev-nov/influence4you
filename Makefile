@@ -126,7 +126,7 @@ environment-install: ##@Environment Build Docker Containers And Start Them
 	@echo "${YELLOW}Please wait...${RESET}"
 	@sleep 30
 	@docker-compose exec -T -e db_prefix=$(call GET_ENV_ARG,DB_TEST_PREFIX) database sh -c 'psql -U $${POSTGRES_USER} -c "CREATE DATABASE $${db_prefix}$${POSTGRES_DB};"'
-	@docker-compose exec -T -e db_prefix=$(call GET_ENV_ARG,DB_TEST_PREFIX) database sh -c 'psql -U $${POSTGRES_USER} -c "GRANT ALL PRIVILEGES ON DATABASE $${db_prefix}$${POSTGRES_DB} TO $${POSTGRES_USER};'
+	@docker-compose exec -T -e db_prefix=$(call GET_ENV_ARG,DB_TEST_PREFIX) database sh -c 'psql -U $${POSTGRES_USER} -c "GRANT ALL PRIVILEGES ON DATABASE $${db_prefix}$${POSTGRES_DB} TO $${POSTGRES_USER};"'
 
 environment-uninstall: ##@Environment Remove Docker Environment Containers
 ifeq (${ASK}, 1)
@@ -150,7 +150,8 @@ app-create: ##@Application Install Dependent Vendors for Project Application
 	@docker-compose exec -T cli artisan key:generate
 	@docker-compose down
 	@docker-compose up -d
-
+	@echo "${YELLOW}Please wait...${RESET}"
+	@sleep 30
 
 app-install: ##@Application Setup Application
 	@docker-compose exec -T cli artisan migrate:fresh --seed

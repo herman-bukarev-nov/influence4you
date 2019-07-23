@@ -22,6 +22,7 @@ git clone https://github.com/herman-bukarev-nov/influence4you.git
 ``` bash
 make install app=influence4you
 ```
+3. After that open in browser this URL: `influence4you.local`
 
 > Additional variables:\
 > `port`: You may set web port from default 80 to 8080 or another, if 80 port is occupied on your host  \
